@@ -4,15 +4,31 @@
 {% endblock %}
 
 {% block contenido %}
-<section class="features-icons bg-light text-center">
+<section class="features-icons bg-light ">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1>Bienvenido a mi sitio</h1>
+                <h1>Bienvenido a mi sitio, puedes buscar una camada.</h1>
+                <form action="{% url 'buscar' %}" method="GET">
+                    {% csrf_token %}
+                    <input type="text" name="camada" id="camada">
+                    <input type="submit" value="Buscar">
+                </form>
             </div>
         </div>
      </div>
 
 </section>
+<p>Estamos buscando la camada {{ camada }}</p>
+{% if cursos %}
+<ul>
+    {% for curso in cursos %}
+    <li style="font-size: 30px;">{{ curso.camada }}: {{ curso.nombre }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p style="font-weight: bold;">No hay datos con esa descripción</p>
+{% endif %}
+<p style="color: red; font-size: 20px" >{{ resultado }}</p>
 {% endblock %}        
 

@@ -6,10 +6,20 @@
 
 <h1>Estudiantes</h1>
 <p>Aqui va la info de los estudiantes</p>
-<section class="features-icons bg-light ">
+<section >
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
+                <form action="{% url 'estudiantes' %}" method="POST">
+                    {% csrf_token %}
+                    <label for="">Nombre</label>
+                    <input type="text" name="nombre">
+                    <label for="">Apellido</label>
+                    <input type="text" name="apellido">
+                    <label for="">Ingrese su email</label>
+                    <input type="email" name="email" >
+                    <input type="submit">
+                </form>
                 
             </div>
         </div>

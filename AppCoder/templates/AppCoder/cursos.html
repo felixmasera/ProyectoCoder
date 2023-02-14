@@ -8,7 +8,18 @@ Bienvenido a nuestros cursos
 {% block contenido %}
 <h1>Cursos</h1>
 <p>Aqui va la info de los cursos</p>
-<section class="features-icons bg-light ">
+<section >
+    {% if formulario_profesor.errors %}
+              <p style="color:red">Los datos estan mal cargados.Por favor revisar.</p>
+              {% endif %}
+    <form action="{% url 'cursos' %}" method="POST">
+        {% csrf_token %}
+        <label for="">Curso</label>
+        <input type="text" name="curso">
+        <label for="">Camada</label>
+        <input type="number" name="camada">
+        <input type="submit" value="Agregar">
+    </form>
     
 
 </section>
