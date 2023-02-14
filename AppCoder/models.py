@@ -27,7 +27,9 @@ class Profesor(models.Model):
     apellido = models.CharField(max_length=30)
     email = models.EmailField()
     profesion = models.CharField(max_length=30)
-
+    
+    class Meta:
+        verbose_name_plural= 'Profesores'
 
 
 class Entregable(models.Model):
