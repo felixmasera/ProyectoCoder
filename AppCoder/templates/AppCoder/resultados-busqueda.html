@@ -1,4 +1,16 @@
-<!DOCTYPE html>
+<{% extends 'AppCoder/padre.html' %}
+
+{% block titulo %}
+
+Bienvenido a nuestros cursos
+{% endblock %}
+
+{% block contenido %}
+    
+
+
+
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,10 +26,16 @@
 
     <ul>
         {% for curso in cursos %}
-        <li>{{ curso.camada }}: {{ curso.nombre }}</li>
+        <li>{{ curso.camada }}:<li>
+        <li>{{ curso.nombre }}</li>
         {% endfor %}
     </ul>
 
+    {% else %}
+    <p>No hay datos encontrados</p>
+
     {% endif %}
+
+    <p style="color:red">{{respuesta}}</p>
 </body>
 </html>

@@ -10,20 +10,27 @@ def inicio(request):
 
 
 def cursos(request):
+    mis_cursos = Curso.objects.all()
+
     if request.method == 'POST':
         mi_formulario = CursoFormulario(request.POST)
 
 
         if mi_formulario.is_valid():
             informacion = mi_formulario.cleaned_data
-            nuevo_curso= Curso(nombre=informacion['curso'], camada=informacion['camada'])
-            nuevo_curso.save()
-            return redirect('inicio')
+            curso = Curso(nombre=informacion['curso'], camada=informacion['camada'])
+            curso.save()
+            
+            nuevo_curso = {'nombre': informacion['curso'], 'camada': informacion['camada']}
+            return render(request, 'AppCoder/cursos.html',{'formulario_curso': mi_formulario,
+                                                            'nuevo_curso': nuevo_curso,
+                                                            'mis_cursos':mis_cursos})
 
+        else:         
+            mi_formulario = CursoFormulario()
 
-    mi_formulario = CursoFormulario()
-    return render(request, 'AppCoder/cursos.html',{'cursos': mi_formulario})
-    
+        return render(request,'AppCoder/cursos.html',{'formulario_curso': mi_formulario,'mis_cursos': mis_cursos})
+    return render(request, 'AppCoder/cursos.html',{'mis_cursos':mis_cursos})
 
 
 def profesores(request):

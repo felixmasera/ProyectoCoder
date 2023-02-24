@@ -7,18 +7,38 @@ Bienvenido a nuestros cursos
 
 {% block contenido %}
 <h1>Cursos</h1>
-<p>Aqui va la info de los cursos</p>
 <section >
-    {% if formulario_profesor.errors %}
+    {% if formulario_curso.errors %}
               <p style="color:red">Los datos estan mal cargados.Por favor revisar.</p>
-              {% endif %}
+    {% endif %}
+
+    <h4>Cursos activos:</h4>
+    {% for curso in mis_cursos %}
+    {{ curso.camada }} : {{ curso.nombre }}<br>
+    {% endfor %}
+    <hr>
+
+
+    {% if nuevo_curso %}
+
+
+    <p>Se agrego satisfactoriamente la camada {{ nuevo_curso.camada }} ({{ nuevo_curso.nombre }})</p>
+    <hr>
+
+    {% endif %}
+
+
+
+
+
+
     <form action="{% url 'cursos' %}" method="POST">
         {% csrf_token %}
-        <label for="">Curso</label>
-        <input type="text" name="curso">
-        <label for="">Camada</label>
-        <input type="number" name="camada">
-        <input type="submit" value="Agregar">
+            <table>
+                {{formulario_curso.as_table}}
+            </table>
+
+            <input type="submit" value="Agregar curso">
     </form>
     
 
