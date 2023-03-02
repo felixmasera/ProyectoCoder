@@ -18,7 +18,7 @@ class Estudiante(models.Model):
     apellido = models.CharField(max_length=30)
     email = models.EmailField()
 
-
+    
 
 class Profesor(models.Model):
     
@@ -28,6 +28,8 @@ class Profesor(models.Model):
     email = models.EmailField()
     profesion = models.CharField(max_length=30)
     
+    def __str__(self):
+        return self.nombre + " " + self.apellido
     class Meta:
         verbose_name_plural= 'Profesores'
 

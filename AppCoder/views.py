@@ -21,6 +21,8 @@ def cursos(request):
             curso = Curso(nombre=informacion['curso'], camada=informacion['camada'])
             curso.save()
             
+            
+            
             nuevo_curso = {'nombre': informacion['curso'], 'camada': informacion['camada']}
             return render(request, 'AppCoder/cursos.html',{'formulario_curso': mi_formulario,
                                                             'nuevo_curso': nuevo_curso,
@@ -118,6 +120,24 @@ def buscar(request):
     else: 
         resultado= 'Espacios en blanco'
 
-        return render(request, 'AppCoder/inicio.html', {'resultado': resultado})
+    return render(request, 'AppCoder/inicio.html', {'resultado': resultado})
    
-    
+def leer_profesores(request):
+       profesores = Profesor.objects.all()
+
+       contexto = {'profesores':profesores}
+
+       return render(request, 'AppCoder/leer-profesores.html', contexto)
+
+
+
+def eliminar_profesor(request,profesor_id):
+    profesor = Profesor.objects.get(id=profesor_id)
+    profesor.delete()
+
+    profesores = Profesor.objects.all()
+
+    contexto = {'profesores': profesores}
+
+
+    return render(request, 'AppCoder/leer-profesores.html', contexto)

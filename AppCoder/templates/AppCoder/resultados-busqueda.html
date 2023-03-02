@@ -20,14 +20,14 @@ Bienvenido a nuestros cursos
 </head>
 <body>
 
-    <p>Estamos buscando la camada {{ camada }}</p>
+    <p>Estamos buscando la camada: {{ camada }}</p>
 
     {% if cursos %}
 
     <ul>
         {% for curso in cursos %}
-        <li>{{ curso.camada }}:<li>
-        <li>{{ curso.nombre }}</li>
+            <li>{{ curso.camada }}:<li>
+            <li>{{ curso.nombre }}</li>
         {% endfor %}
     </ul>
 
